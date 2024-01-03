@@ -1,4 +1,4 @@
-import { getBeats } from "@/actions/getSongs";
+import { getBeats } from "@/actions/getBeats";
 import { Header } from "@/components/Header";
 import { ListItem } from "@/components/ListItem";
 import { PageContent } from "./components/PageContent";

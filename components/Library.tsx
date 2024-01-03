@@ -4,8 +4,14 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { useAuthModal } from "@/hooks/useAuthModal";
 import { useUser } from "@/hooks/useUser";
 import { useUploadModal } from "@/hooks/useUploadModal";
+import { Beat } from "@/types";
+import MediaItem from "./MediaItem";
 
-export const Library = () => {
+interface LibraryProps {
+  beats: Beat[];
+}
+
+export const Library: React.FC<LibraryProps> = ({ beats }) => {
   const authModal = useAuthModal();
   const uploadModal = useUploadModal();
   const { user } = useUser();
@@ -31,7 +37,15 @@ export const Library = () => {
           className="text-neutral-400 hover:text-neutral-300 cursor-pointer transition"
         />
       </div>
-      <div className="flex flex-col gap-y-2 mt-4 px-3">TODO: List of Beats</div>
+      <div className="flex flex-col gap-y-2 mt-4 px-3">
+        {beats.map((beat) => (
+          <MediaItem 
+          onClick={() => {}}
+          key={beat.id}
+          data={beat}
+          />
+        ))}
+      </div>
     </div>
   );
 };

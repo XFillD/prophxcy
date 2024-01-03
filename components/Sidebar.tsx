@@ -7,12 +7,14 @@ import { SidebarItem } from "./SidebarItem";
 import { HiHome } from "react-icons/hi";
 import { BiSearch } from "react-icons/bi";
 import { Library } from "./Library";
+import { Beat } from "@/types";
 
 interface SidebarProps {
   children: React.ReactNode;
+  beats: Beat[];
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ children, beats }) => {
   const pathname = usePathname();
 
   const routes = useMemo(
@@ -44,12 +46,10 @@ export const Sidebar: React.FC<SidebarProps> = ({ children }) => {
           </div>
         </Box>
         <Box className="overflow-y-auto h-full">
-          <Library />
+          <Library beats={beats} />
         </Box>
       </div>
-      <main className="h-full flex-1 overflow-y-auto py-2">
-        {children}
-      </main>
+      <main className="h-full flex-1 overflow-y-auto py-2">{children}</main>
     </div>
   );
 };
