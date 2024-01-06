@@ -5,7 +5,7 @@ export interface Beat {
   user_id: string;
   author: string;
   title: string;
-  song_path: string;
+  beat_path: string;
 }
 
 export interface UserDetails {

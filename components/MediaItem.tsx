@@ -41,9 +41,7 @@ const MediaItem: React.FC<MediaItemProps> = ({ data, onClick }) => {
           min-w-[48px] 
           overflow-hidden
         "
-      >
-        TODO IMAGE
-      </div>
+      ></div>
       <div className="flex flex-col gap-y-1 overflow-hidden">
         <p className="text-white truncate">{data.title}</p>
         <p className="text-neutral-400 text-sm truncate">By {data.author}</p>

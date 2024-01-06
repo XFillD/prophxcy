@@ -1,13 +1,15 @@
 "use client";
 
 import { Beat } from "@/types";
-import {BeatItem} from "@/components/BeatItem";
+import { BeatItem } from "@/components/BeatItem";
+import { useOnPlay } from "@/hooks/useOnPlay";
 
 interface PageContentProps {
   beats: Beat[];
 }
 
 export const PageContent: React.FC<PageContentProps> = ({ beats }) => {
+  const onPlay = useOnPlay(beats);
 
   if (beats.length === 0) {
     return <div className="mt-4 text-neutral-400">No beats available.</div>;
@@ -29,7 +31,7 @@ export const PageContent: React.FC<PageContentProps> = ({ beats }) => {
     >
       {beats.map((item) => (
         <BeatItem
-          onClick={() => {}}
+          onClick={(id: string) => onPlay(id)}
           key={item.id}
           data={item}
         />
