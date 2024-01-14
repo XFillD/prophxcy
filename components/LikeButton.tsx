@@ -73,6 +73,7 @@ export const LikeButton: React.FC<LikeButtonProps> = ({ beatId }) => {
         toast.error(error.message);
       } else {
         setLiked(true);
+        toast.success("Success");
       }
     }
     router.refresh();

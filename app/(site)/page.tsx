@@ -7,6 +7,7 @@ export const revalidate = 0;
 
 export default async function Home() {
   const beats = await getBeats();
+
   return (
     <div className="bg-neutral-900 rounded-lg h-full w-full overflow-hidden overflow-y-auto">
       <Header>
@@ -25,7 +26,7 @@ export default async function Home() {
         <div className="flex justify-between items-center">
           <h1 className="text-white text-2xl font-semibold">Newest Beats</h1>
         </div>
-        <PageContent beats={beats}/>
+        <PageContent beats={beats} />
       </div>
     </div>
   );

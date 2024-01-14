@@ -33,7 +33,7 @@ export interface Price {
   description?: string;
   product_id?: string;
   unit_amount?: number;
-  curency?: string;
+  currency?: string;
   type?: Stripe.Price.Type;
   interval?: Stripe.Price.Recurring.Interval;
   interval_count?: number;
