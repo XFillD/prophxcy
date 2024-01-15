@@ -35,6 +35,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }) => {
       toast.error(error.message);
     } else {
       toast.success("Logged out successfully");
+      router.push("/");
     }
   };
   return (
@@ -79,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({ children, className }) => {
               </Button>
               <Button
                 className="bg-white"
-                onClick={() => router.push("/account")}
+                onClick={() => router.push("/profile")}
               >
                 <FaUserAlt />
               </Button>
