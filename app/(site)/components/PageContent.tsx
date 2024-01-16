@@ -25,7 +25,7 @@ export const PageContent: React.FC<PageContentProps> = ({ beats }) => {
         lg:grid-cols-4 
         xl:grid-cols-5 
         2xl:grid-cols-8 
-        gap-4 
+        gap-8 
         mt-4
       "
     >

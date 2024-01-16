@@ -1,6 +1,7 @@
 "use client";
 
 import { Header } from "@/components/Header";
+import { ListItem } from "@/components/ListItem";
 import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import {
   TableHead,
@@ -15,7 +16,7 @@ import { useUser } from "@/hooks/useUser";
 const Profile = () => {
   const { user } = useUser();
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col h-screen bg-neutral-900">
       <Header>My Profile</Header>
       <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-6">
         <div className="flex flex-col md:grid md:grid-cols-6 gap-6">
@@ -23,52 +24,6 @@ const Profile = () => {
             <Card>
               <CardHeader>
                 <CardTitle>Purchased Exclusive Beats</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <Table>
-                  <TableHeader>
-                    <TableRow>
-                      <TableHead className="w-[80px] hidden md:table-cell">
-                        Image
-                      </TableHead>
-                      <TableHead className="max-w-[150px]">Title</TableHead>
-                      <TableHead>Artist</TableHead>
-                    </TableRow>
-                  </TableHeader>
-                  <TableBody>
-                    <TableRow>
-                      <TableCell className="hidden md:table-cell">
-                        <img
-                          alt="Beat image"
-                          className="aspect-square rounded-md object-cover"
-                          height="64"
-                          src="/beato.svg"
-                          width="64"
-                        />
-                      </TableCell>
-                      <TableCell className="font-medium">Beatas</TableCell>
-                      <TableCell>Prophxcy</TableCell>
-                    </TableRow>
-                    <TableRow>
-                      <TableCell className="hidden md:table-cell">
-                        <img
-                          alt="Beat image"
-                          className="aspect-square rounded-md object-cover"
-                          height="64"
-                          src="/beato.svg"
-                          width="64"
-                        />
-                      </TableCell>
-                      <TableCell className="font-medium">Beatas</TableCell>
-                      <TableCell>Prophxcy</TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle>Purchased Beat Leases</CardTitle>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -121,8 +76,13 @@ const Profile = () => {
                 </CardTitle>
               </CardHeader>
               <CardContent className="text-base">
-                <div className="grid gap-1">
+                <div className="grid gap-1 gap-y-4">
                   <div className="font-semibold">Email: {user?.email}</div>
+                  <ListItem
+                    image="/images/liked.png"
+                    name="Liked Beats"
+                    href="liked"
+                  />
                 </div>
               </CardContent>
             </Card>

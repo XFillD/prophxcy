@@ -2,6 +2,7 @@
 
 import { Beat } from "@/types";
 import PlayButton from "./PlayButton";
+import Image from "next/image";
 
 interface BeatItemProps {
   data: Beat;
@@ -24,9 +25,14 @@ export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick }) => {
         gap-x-4 
         bg-neutral-400/5 
         cursor-pointer 
-        hover:bg-neutral-400/10 
+        hover:bg-neutral-400/10
+        hover:shadow-2xl
+        hover:scale-105
+        hover:shadow-white
         transition 
         p-3
+        border
+        border-purple-300
       "
     >
       <div
@@ -38,7 +44,9 @@ export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick }) => {
           rounded-md 
           overflow-hidden
         "
-      ></div>
+      >
+        <Image src={"/musicFin.svg"} alt={data.title} layout="fixed" width={150} height={150} className="ml-7 mt-6" />
+      </div>
       <div className="flex flex-col items-start w-full pt-4 gap-y-1">
         <p className="font-semibold truncate w-full">{data.title}</p>
         <p
