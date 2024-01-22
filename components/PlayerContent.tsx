@@ -7,6 +7,7 @@ import { AiFillStepBackward, AiFillStepForward } from "react-icons/ai";
 import useSound from "use-sound";
 import { Beat } from "@/types";
 import { usePlayer } from "@/hooks/usePlayer";
+import { MdCancel } from "react-icons/md";
 
 import { LikeButton } from "./LikeButton";
 import MediaItem from "./MediaItem";
@@ -16,9 +17,14 @@ import { PlayerRange } from "./PlayerRange";
 interface PlayerContentProps {
   beat: Beat;
   beatUrl: string;
+  setShowPlayer: () => void;
 }
 
-const PlayerContent: React.FC<PlayerContentProps> = ({ beat, beatUrl }) => {
+const PlayerContent: React.FC<PlayerContentProps> = ({
+  beat,
+  beatUrl,
+  setShowPlayer,
+}) => {
   const player = usePlayer();
   const [volume, setVolume] = useState(1);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -193,22 +199,28 @@ const PlayerContent: React.FC<PlayerContentProps> = ({ beat, beatUrl }) => {
         </div>
 
         <div className="hidden md:flex w-full justify-end pr-2">
-          <div className="flex items-center gap-x-2 w-[120px]">
-            <VolumeIcon
-              onClick={toggleMute}
-              className="cursor-pointer"
-              size={34}
-            />
-            <Slider value={volume} onChange={(value) => setVolume(value)} />
-          </div>
+          <button className="cursor-pointer" onClick={setShowPlayer}>
+            <MdCancel />
+          </button>
         </div>
       </div>
-      <div className="flex justify-center">
-        <PlayerRange
-          sound={sound}
-          currentTime={currentTime}
-          setCurrentTime={setCurrentTime}
-        />
+      <div className="flex justify-center items-center w-full">
+        <div className="flex justify-center w-full">
+          <PlayerRange
+            sound={sound}
+            currentTime={currentTime}
+            setCurrentTime={setCurrentTime}
+          />
+        </div>
+
+        <div className="flex items-center gap-x-2 w-[120px]">
+          <VolumeIcon
+            onClick={toggleMute}
+            className="cursor-pointer"
+            size={34}
+          />
+          <Slider value={volume} onChange={(value) => setVolume(value)} />
+        </div>
       </div>
     </div>
   );

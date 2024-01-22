@@ -11,11 +11,17 @@ export const Player = () => {
 
   const beatUrl = useLoadBeatUrl(beat);
 
+  const showPlayerHandler = () => {
+    player.setShow(false);
+  };
+
   if (!beat || !beatUrl || !player.activeId) return null;
 
   return (
-    <div
-      className="
+    <>
+      {player.show && (
+        <div
+          className="
         fixed 
         bottom-0 
         bg-black 
@@ -24,8 +30,15 @@ export const Player = () => {
         h-[80px] 
         px-4
       "
-    >
-      <PlayerContent key={beatUrl} beat={beat} beatUrl={beatUrl} />
-    </div>
+        >
+          <PlayerContent
+            key={beatUrl}
+            beat={beat}
+            beatUrl={beatUrl}
+            setShowPlayer={showPlayerHandler}
+          />
+        </div>
+      )}
+    </>
   );
 };

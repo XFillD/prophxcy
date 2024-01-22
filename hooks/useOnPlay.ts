@@ -14,6 +14,7 @@ export const useOnPlay = (beats: Beat[]) => {
 
     player.setId(id);
     player.setIds(beats.map((beat) => beat.id));
+    player.setShow(true)
   };
 
   return onPlay;
