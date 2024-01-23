@@ -8,33 +8,15 @@ import { useEffect, useRef } from "react";
 interface BeatItemProps {
   data: Beat;
   onClick: (id: string) => void;
-  audio: HTMLAudioElement;
 }
 
-export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick, audio }) => {
-  const itemRef = useRef<HTMLDivElement | null>(null);
+export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          // Start loading the audio file when the item becomes visible
-          audioRef.current = new Audio(data.beat_path);
-          audioRef.current.preload = "auto";
-        }
-      });
-    });
-
-    if (itemRef.current) {
-      observer.observe(itemRef.current);
-    }
-
-    return () => {
-      if (itemRef.current) {
-        observer.unobserve(itemRef.current);
-      }
-    };
+    // Start loading the audio file when the component is mounted
+    audioRef.current = new Audio(data.beat_path);
+    audioRef.current.preload = "auto";
   }, [data]);
 
   const handleClick = () => {

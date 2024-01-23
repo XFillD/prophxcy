@@ -3,7 +3,7 @@
 import { Beat } from "@/types";
 import { BeatItem } from "@/components/BeatItem";
 import { useOnPlay } from "@/hooks/useOnPlay";
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 interface PageContentProps {
   beats: Beat[];
@@ -11,17 +11,6 @@ interface PageContentProps {
 
 export const PageContent: React.FC<PageContentProps> = ({ beats }) => {
   const onPlay = useOnPlay(beats);
-  const [audioObjects, setAudioObjects] = useState<HTMLAudioElement[]>([]);
-
-  useEffect(() => {
-    // Preload audio files
-    const audios = beats.map((beat) => {
-      const audio = new Audio(beat.beat_path);
-      audio.preload = "auto";
-      return audio;
-    });
-    setAudioObjects(audios);
-  }, [beats]);
 
   if (beats.length === 0) {
     return <div className="mt-4 text-neutral-400">No beats available.</div>;
@@ -46,7 +35,6 @@ export const PageContent: React.FC<PageContentProps> = ({ beats }) => {
           onClick={(id: string) => onPlay(id)}
           key={item.id}
           data={item}
-          audio={audioObjects[index]}
         />
       ))}
     </div>
