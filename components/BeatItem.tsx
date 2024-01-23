@@ -12,12 +12,30 @@ interface BeatItemProps {
 }
 
 export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick, audio }) => {
-
+  const itemRef = useRef<HTMLDivElement | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = audio; // Use the passed audio object
-  }, [audio]);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Start loading the audio file when the item becomes visible
+          audioRef.current = new Audio(data.beat_path);
+          audioRef.current.preload = "auto";
+        }
+      });
+    });
+
+    if (itemRef.current) {
+      observer.observe(itemRef.current);
+    }
+
+    return () => {
+      if (itemRef.current) {
+        observer.unobserve(itemRef.current);
+      }
+    };
+  }, [data]);
 
   const handleClick = () => {
     onClick(data.id);
@@ -25,7 +43,7 @@ export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick, audio }) => {
       audioRef.current.play();
     }
   };
-  
+
   return (
     <div
       onClick={handleClick}
@@ -61,7 +79,14 @@ export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick, audio }) => {
           overflow-hidden
         "
       >
-        <Image src={"/musicFin.svg"} alt={data.title} layout="fixed" width={150} height={150} className="ml-7 mt-6" />
+        <Image
+          src={"/musicFin.svg"}
+          alt={data.title}
+          layout="fixed"
+          width={150}
+          height={150}
+          className="ml-7 mt-6"
+        />
       </div>
       <div className="flex flex-col items-start w-full pt-4 gap-y-1">
         <p className="font-semibold truncate w-full">{data.title}</p>
