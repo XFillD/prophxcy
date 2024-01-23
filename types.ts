@@ -6,6 +6,7 @@ export interface Beat {
   author: string;
   title: string;
   beat_path: string;
+  audio: HTMLAudioElement;
 }
 
 export interface UserDetails {

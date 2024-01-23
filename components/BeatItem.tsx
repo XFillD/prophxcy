@@ -8,16 +8,16 @@ import { useEffect, useRef } from "react";
 interface BeatItemProps {
   data: Beat;
   onClick: (id: string) => void;
+  audio: HTMLAudioElement;
 }
 
-export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick }) => {
+export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick, audio }) => {
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-    audioRef.current = new Audio(data.beat_path);
-    audioRef.current.preload = 'auto';
-  }, [data.beat_path]);
+    audioRef.current = audio; // Use the passed audio object
+  }, [audio]);
 
   const handleClick = () => {
     onClick(data.id);
