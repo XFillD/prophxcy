@@ -3,6 +3,7 @@
 import { Beat } from "@/types";
 import PlayButton from "./PlayButton";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 interface BeatItemProps {
   data: Beat;
@@ -10,9 +11,24 @@ interface BeatItemProps {
 }
 
 export const BeatItem: React.FC<BeatItemProps> = ({ data, onClick }) => {
+
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio(data.beat_path);
+    audioRef.current.preload = 'auto';
+  }, [data.beat_path]);
+
+  const handleClick = () => {
+    onClick(data.id);
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+  };
+  
   return (
     <div
-      onClick={() => onClick(data.id)}
+      onClick={handleClick}
       className="
         relative 
         group 

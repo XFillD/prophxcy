@@ -198,7 +198,7 @@ const PlayerContent: React.FC<PlayerContentProps> = ({
           />
         </div>
 
-        <div className="hidden md:flex w-full justify-end pr-2">
+        <div className="hidden md:flex w-full justify-end">
           <button className="cursor-pointer" onClick={setShowPlayer}>
             <MdCancel />
           </button>
